@@ -7,7 +7,7 @@ name = "dtrc"
 version = "0.1.0"
 description = "Directed Temporal Representations for Control"
 readme = "README.md"
-license-files = ["licenses/LeWM-LICENSE", "THIRD_PARTY_NOTICES.md"]
+license-files = ["licenses/LeWM-LICENSE", "licenses/README.md"]
 requires-python = ">=3.10"
 dependencies = ["numpy>=1.26,<3", "torch>=2.5,<3"]
 
