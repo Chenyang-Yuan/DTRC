@@ -1,0 +1,4 @@
+{
+  "training": {"variant": "dtrc", "split_mode": "episode", "train_split": 0.9},
+  "agent": {}
+}

@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dtrc"
+version = "0.1.0"
+description = "Directed Temporal Representations for Control"
+readme = "README.md"
+license-files = ["licenses/LeWM-LICENSE", "THIRD_PARTY_NOTICES.md"]
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26,<3", "torch>=2.5,<3"]
+
+[project.optional-dependencies]
+data = ["h5py>=3.10", "hdf5plugin>=4"]
+environments = ["stable-worldmodel[env,format]==0.1.1"]
+
+[project.scripts]
+dtrc-train = "dtrc.cli.train:main"
+dtrc-cache-hdf5 = "dtrc.cli.cache_hdf5:main"
+dtrc-cache-lance = "dtrc.cli.cache_lance:main"
+dtrc-manifest-lewm = "dtrc.cli.manifest_lewm:main"
+dtrc-manifest-ogbench = "dtrc.cli.manifest_ogbench:main"
+dtrc-evaluate-lewm = "dtrc.cli.evaluate_lewm:main"
+dtrc-evaluate-ogbench = "dtrc.cli.evaluate_ogbench:main"
+dtrc-diagnose = "dtrc.cli.diagnose:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]

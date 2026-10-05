@@ -1,0 +1,10 @@
+name: dtrc
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10.20
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu124
+      - -r requirements-environment.txt
+      - -e .[data,environments]

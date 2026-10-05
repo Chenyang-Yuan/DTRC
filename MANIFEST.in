@@ -1,0 +1,10 @@
+include README.md
+include THIRD_PARTY_NOTICES.md
+include requirements-core.txt
+include requirements-environment.txt
+include environment.yml
+recursive-include licenses *
+recursive-include configs *.json
+recursive-include docs *.md
+recursive-include assets *.webp
+recursive-include scripts *.py

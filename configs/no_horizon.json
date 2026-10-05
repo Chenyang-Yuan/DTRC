@@ -1,0 +1,4 @@
+{
+  "training": {"variant": "no_horizon"},
+  "agent": {}
+}
