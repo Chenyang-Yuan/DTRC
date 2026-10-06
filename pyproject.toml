@@ -13,12 +13,13 @@ dependencies = ["numpy>=1.26,<3", "torch>=2.5,<3"]
 
 [project.optional-dependencies]
 data = ["h5py>=3.10", "hdf5plugin>=4"]
-environments = ["stable-worldmodel[env,format]==0.1.1"]
+environments = ["stable-worldmodel==0.1.1", "ogbench==1.2.1", "pygame", "pymunk", "shapely", "opencv-python-headless", "dm-control", "imageio[ffmpeg]"]
 
 [project.scripts]
 dtrc-train = "dtrc.cli.train:main"
 dtrc-cache-hdf5 = "dtrc.cli.cache_hdf5:main"
 dtrc-cache-lance = "dtrc.cli.cache_lance:main"
+dtrc-prepare-ogbench = "dtrc.cli.prepare_ogbench:main"
 dtrc-manifest-lewm = "dtrc.cli.manifest_lewm:main"
 dtrc-manifest-ogbench = "dtrc.cli.manifest_ogbench:main"
 dtrc-evaluate-lewm = "dtrc.cli.evaluate_lewm:main"

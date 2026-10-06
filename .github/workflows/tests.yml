@@ -30,6 +30,7 @@ jobs:
           dtrc-train --help
           dtrc-cache-hdf5 --help
           dtrc-cache-lance --help
+          dtrc-prepare-ogbench --help
           dtrc-manifest-lewm --help
           dtrc-manifest-ogbench --help
           dtrc-evaluate-lewm --help

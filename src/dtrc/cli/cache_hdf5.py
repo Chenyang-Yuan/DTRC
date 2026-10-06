@@ -88,7 +88,7 @@ def episode_bounds(episodes: np.ndarray, steps: np.ndarray):
     return (episode_start, episode_end)
 
 
-def write_index(h5_path: Path, output_dir: Path) -> dict:
+def write_index(h5_path: Path, output_dir: Path, max_episodes=None) -> dict:
     with h5py.File(h5_path, "r", swmr=True) as handle:
         actions = np.asarray(handle["action"], dtype=np.float32)
         steps = np.asarray(handle["step_idx"], dtype=np.int64).reshape(-1)
@@ -96,6 +96,12 @@ def write_index(h5_path: Path, output_dir: Path) -> dict:
         episodes = np.asarray(handle[ep_key], dtype=np.int64).reshape(-1)
         pixel_shape = tuple((int(x) for x in handle["pixels"].shape[1:]))
         columns = sorted(handle.keys())
+    if max_episodes is not None:
+        if max_episodes < 1:
+            raise ValueError("max-episodes must be positive")
+        ends = np.flatnonzero(np.r_[episodes[1:] != episodes[:-1], True]) + 1
+        stop = int(ends[min(max_episodes, len(ends)) - 1])
+        actions, steps, episodes = actions[:stop], steps[:stop], episodes[:stop]
     if actions.ndim == 1:
         actions = actions[:, None]
     actions = np.nan_to_num(actions, nan=0.0)
@@ -142,6 +148,12 @@ def parse_args():
     parser.add_argument("--progress-every", type=int, default=20000)
     parser.add_argument("--cache-dir", default=None)
     parser.add_argument(
+        "--max-episodes",
+        type=int,
+        default=None,
+        help="Encode only the first complete episodes for a short pipeline check",
+    )
+    parser.add_argument(
         "--h5", default=None, help="explicit HDF5 path (skips SWM lookup)"
     )
     return parser.parse_args()
@@ -160,9 +172,18 @@ def main() -> None:
     progress_path = output_dir / "progress.json"
     meta_path = output_dir / "meta.json"
     if meta_path.exists() and (not progress_path.exists()) and latents_path.exists():
+        previous = json.loads(meta_path.read_text(encoding="utf-8"))
+        if (
+            previous.get("h5_path"),
+            previous.get("max_episodes"),
+            previous.get("lewm_checkpoint"),
+        ) != (str(h5_path), args.max_episodes, str(args.lewm_checkpoint)):
+            raise ValueError(
+                "Existing cache uses different inputs; choose a new output directory"
+            )
         print(f"[cache] already complete: {output_dir}")
         return
-    index_meta = write_index(h5_path, output_dir)
+    index_meta = write_index(h5_path, output_dir, args.max_episodes)
     row_count = index_meta["rows"]
     backend = load_lewm_backend(args.lewm_checkpoint, device=args.device)
     feature_dim = backend.latent_dim
@@ -242,6 +263,7 @@ def main() -> None:
         "task": args.task,
         "dataset": dataset,
         "h5_path": str(h5_path),
+        "max_episodes": args.max_episodes,
         "lewm_checkpoint": str(args.lewm_checkpoint),
         "lewm_weights_sha256": getattr(backend, "weights_sha256", None),
         "lewm": backend.describe(),
