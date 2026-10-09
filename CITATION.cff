@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use DTRC, please cite the paper below."
+type: software
+title: "DTRC: Directed Temporal Representations for Offline Visual Control"
+authors:
+  - family-names: Yuan
+    given-names: Chenyang
+  - family-names: Wang
+    given-names: Haoyu
+  - family-names: Sun
+    given-names: Zhuo
+  - family-names: Cheng
+    given-names: Xiaoyuan
+repository-code: "https://github.com/Chenyang-Yuan/DTRC"
+url: "https://chenyang-yuan.github.io/dtrc-project/"
+preferred-citation:
+  type: article
+  title: "Directed Temporal Representations for Offline Visual Control"
+  authors:
+    - family-names: Yuan
+      given-names: Chenyang
+    - family-names: Wang
+      given-names: Haoyu
+    - family-names: Sun
+      given-names: Zhuo
+    - family-names: Cheng
+      given-names: Xiaoyuan
+  journal: arXiv
+  year: 2026
+  doi: "10.48550/arXiv.2610.08960"
+  url: "https://arxiv.org/abs/2610.08960"

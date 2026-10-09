@@ -1,4 +1,10 @@
-# Directed Temporal Representations for Control
+# Directed Temporal Representations for Offline Visual Control
+
+Chenyang Yuan, Haoyu Wang, Zhuo Sun, Xiaoyuan Cheng
+
+**[Paper](https://arxiv.org/abs/2610.08960)** ·
+**[PDF](https://arxiv.org/pdf/2610.08960)** ·
+**[Project Page](https://chenyang-yuan.github.io/dtrc-project/)**
 
 **DTRC** learns a directed temporal distance on frozen LeWorldModel (LeWM)
 features. Offline trajectories organize the representation by goal-reaching
@@ -239,6 +245,22 @@ Run the numerical and interface tests with:
 
 ```sh
 python -m unittest discover -s tests -v
+```
+
+## Citation
+
+If you use DTRC in your research, please cite:
+
+```bibtex
+@misc{yuan2026directedtemporalrepresentations,
+  title         = {Directed Temporal Representations for Offline Visual Control},
+  author        = {Chenyang Yuan and Haoyu Wang and Zhuo Sun and Xiaoyuan Cheng},
+  year          = {2026},
+  eprint        = {2610.08960},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url           = {https://arxiv.org/abs/2610.08960}
+}
 ```
 
 ## Acknowledgements
