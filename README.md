@@ -1,6 +1,11 @@
 # Directed Temporal Representations for Offline Visual Control
 
-Chenyang Yuan, Haoyu Wang, Zhuo Sun, Xiaoyuan Cheng
+Chenyang Yuan<sup>1</sup>, Haoyu Wang<sup>2</sup>, Zhuo Sun<sup>3,†</sup>, Xiaoyuan Cheng<sup>4,†</sup>
+
+<sup>1</sup> University of Sheffield · <sup>2</sup> Shanghai Jiao Tong University<br>
+<sup>3</sup> Shanghai University of Finance and Economics · <sup>4</sup> University College London
+
+<sup>†</sup> Corresponding authors.
 
 **[Paper](https://arxiv.org/abs/2610.08960)** ·
 **[PDF](https://arxiv.org/pdf/2610.08960)** ·
